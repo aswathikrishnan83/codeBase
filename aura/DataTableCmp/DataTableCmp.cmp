@@ -1,0 +1,16 @@
+<aura:component implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes,force:lightningQuickAction,lightning:actionOverride" controller="DataTableController" access="GLOBAL">
+    <aura:attribute name="contacts" type="List"/>
+    <aura:attribute name="contact" type="Map"/>
+    <aura:attribute name="tableColumns" type="String[]"/>
+    <aura:attribute name="sendData" type="object"/>
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+    <lightning:overlayLibrary aura:id="overlayLib"/> 
+    <div class="slds">
+    	<div id="content">
+    		<lightning:datatable aura:id="datatable" keyField="id" data="{! v.contacts }" columns="{! v.tableColumns }" hideCheckboxColumn="true" onrowaction="{! c.handleRowAction }" />
+    	</div>
+    	<footer class="slds-card__footer">
+    		<lightning:buttonIcon iconName="utility:download" variant="brand" onclick="{! c.exportToPdf }" alternativeText="Download as pdf" />		
+    	</footer>
+    </div>
+</aura:component>
